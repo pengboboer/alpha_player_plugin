@@ -6,7 +6,7 @@ https://github.com/bytedance/AlphaPlayer
 
 ### 运行效果
 
-![输入图片说明](demo_show.gif)
+<img src="./demo_show.gif" width=320 />
 
 ### 特点
 * 支持android和ios双端
