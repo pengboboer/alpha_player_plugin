@@ -12,6 +12,7 @@ class AlphaPlayerView extends StatefulWidget {
   final double? height;
   final AlphaPlayerController controller;
   final PlatformViewCreatedCallback? onCreated;
+
   /// 只有在looping为false的时候才有播放完成的回调
   final ValueChanged<String?>? onCompleted;
 

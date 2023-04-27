@@ -48,7 +48,8 @@ class _DemoPageState extends State<DemoPage> {
                 ),
                 ElevatedButton(
                     onPressed: () async {
-                      final XFile? video = await _picker.pickVideo(source: ImageSource.gallery);
+                      final XFile? video =
+                          await _picker.pickVideo(source: ImageSource.gallery);
                       videoPath = video?.path;
                       setState(() {});
                     },
@@ -75,19 +76,18 @@ class _DemoPageState extends State<DemoPage> {
               ],
             ),
             Container(
-              height: screenWidth * 1.5,
-              width: screenWidth,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  alignment: Alignment.topCenter,
-                  image: AssetImage(
-                    'assets/test_bg.png',
+                height: screenWidth * 1.5,
+                width: screenWidth,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    alignment: Alignment.topCenter,
+                    image: AssetImage(
+                      'assets/test_bg.png',
+                    ),
                   ),
                 ),
-              ),
-              alignment: Alignment.center,
-              child: _buildContentWidget()
-            ),
+                alignment: Alignment.center,
+                child: _buildContentWidget()),
           ],
         ),
       ),

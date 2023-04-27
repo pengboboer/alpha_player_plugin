@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 /// @author: pengboboer
 /// @createDate: 2023/3/29
-typedef AlphaPlayerSimpleViewStartedCallback = void Function(AlphaPlayerController controller);
+typedef AlphaPlayerSimpleViewStartedCallback = void Function(
+    AlphaPlayerController controller);
 
 class AlphaPlayerSimpleView extends StatefulWidget {
   final String path;
@@ -38,7 +39,8 @@ class _AlphaPlayerSimpleViewState extends State<AlphaPlayerSimpleView> {
   void didUpdateWidget(covariant AlphaPlayerSimpleView oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.path != widget.path) {
-      controller.start(widget.path, align: widget.align, isLooping: widget.isLooping);
+      controller.start(widget.path,
+          align: widget.align, isLooping: widget.isLooping);
       widget.onStarted?.call(controller);
     }
   }
@@ -54,7 +56,8 @@ class _AlphaPlayerSimpleViewState extends State<AlphaPlayerSimpleView> {
     return AlphaPlayerView(
       controller: controller,
       onCreated: (id) {
-        controller.start(widget.path, align: widget.align, isLooping: widget.isLooping);
+        controller.start(widget.path,
+            align: widget.align, isLooping: widget.isLooping);
         widget.onStarted?.call(controller);
       },
       width: widget.width,

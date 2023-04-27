@@ -45,7 +45,8 @@ class _DemoSimplePageState extends State<DemoSimplePage> {
                 ),
                 ElevatedButton(
                     onPressed: () async {
-                      final XFile? video = await _picker.pickVideo(source: ImageSource.gallery);
+                      final XFile? video =
+                          await _picker.pickVideo(source: ImageSource.gallery);
                       setState(() {
                         videoPath = video?.path;
                       });
