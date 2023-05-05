@@ -41,16 +41,16 @@ AlphaPlayerSimpleView(
 )
 
 AlphaPlayerSimpleView(
-  path: filePath,
+  path: videoPath,
   width: xxx,
   height: xxx,
   isLooping: false,
   onStarted: (ct) {
-  // 可以拿到controller,进行其他操作
-  controller = ct;
+    // 可以拿到controller,进行其他操作
+    controller = ct;
   },
   onCompleted: (videoPath) {
-  // isLooping为false 才能拿到播放结束的回调
+    // isLooping为false 才能拿到播放结束的回调
   },
 )
 ```
