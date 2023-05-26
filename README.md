@@ -1,3 +1,7 @@
+csdn：https://blog.csdn.net/pengbo6665631/article/details/130409316
+
+掘金：https://juejin.cn/post/7226641471946948667
+
 # alpha_player_plugin
 对字节跳动官方原生组件AlphaPlayer一个flutter plugin封装
 
