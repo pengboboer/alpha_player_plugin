@@ -4,6 +4,7 @@
 #import <Flutter/Flutter.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
 // 平台视图工厂
 @interface AlphaPlayerViewFactory : NSObject<FlutterPlatformViewFactory>
 
