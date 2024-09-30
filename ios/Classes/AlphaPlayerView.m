@@ -7,7 +7,7 @@
 @interface AlphaPlayerView ()<BDAlphaPlayerMetalViewDelegate>
 
 /** channel*/
-@property (nonatomic, strong)  FlutterMethodChannel  *channel;
+@property (nonatomic, strong)  FlutterMethodChannel *channel;
 /** 原生的父视图*/
 @property (nonatomic, strong)  UIView *nativeView;
 
@@ -31,7 +31,6 @@
 // 创建原生视图
 - (instancetype)initWithWithFrame:(CGRect)frame viewIdentifier:(int64_t)viewId arguments:(id)args binaryMessenger:(NSObject<FlutterBinaryMessenger> *)messenger{
     if ([super init]) {
-
         _frame = frame;
         _viewId = viewId;
         _args = args;
@@ -48,8 +47,8 @@
     }
   return self;
 }
-
--(UIView *)view{
+// 重写FlutterPlatformView的build方法
+- (UIView *)view{
     UIView *nativeView = [[UIView alloc] initWithFrame:_frame];
     nativeView.backgroundColor = [UIColor clearColor];
     self.nativeView = nativeView;
@@ -60,30 +59,21 @@
     return nativeView;
 }
 
-
-- (void)startPlay{
-    if (self.videoPath.length > 0) {
-        [self.metalView playWithMetalConfigurationWithDirectory:self.videoPath renderSuperViewFrame:self.nativeView.bounds contentMode:self.align repeat:self.repeat];
-    }else{
-        NSLog(@"路径为空,不处理");
-    }
-}
-
-- (void)metalView:(BDAlphaPlayerMetalView *)metalView didFinishPlayingWithError:(NSError *)error
-{
+#pragma mark -- BDAlphaPlayerMetalViewDelegate 代理方法
+- (void)metalView:(BDAlphaPlayerMetalView *)metalView didFinishPlayingWithError:(NSError *)error{
     if (error) {
         NSLog(@"%@", error.localizedDescription);
     }
     NSLog(@"单次播放结束了");
+    //回调给Flutter
     [self.channel invokeMethod:@"playEnd" arguments:@{@"filePath":self.videoPath}];
-
 }
--(void)frameCallBack:(NSTimeInterval)duration{
+- (void)frameCallBack:(NSTimeInterval)duration{
 //    NSLog(@"duration %f",duration);
 }
 
-#pragma mark -- Flutter 交互监听
--(void)onMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result{
+#pragma mark -- 监听Flutter交互
+- (void)onMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result{
     //监听Fluter
     if ([[call method] isEqualToString:@"start"]) {
         NSLog(@"----start");
@@ -110,10 +100,15 @@
         [self.metalView resume];
     }
 }
-//调用Flutter
-// - (void)flutterMethod{
-//     [self.channel invokeMethod:@"clickAciton" arguments:@"我是参数"];
-// }
+// 开始播放
+- (void)startPlay{
+    if (self.videoPath.length > 0) {
+        [self.metalView playWithMetalConfigurationWithDirectory:self.videoPath renderSuperViewFrame:self.nativeView.bounds contentMode:self.align repeat:self.repeat];
+    }else{
+        NSLog(@"路径为空,不处理");
+    }
+}
+
 
 
 @end

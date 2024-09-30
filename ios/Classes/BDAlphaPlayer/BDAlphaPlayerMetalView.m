@@ -145,11 +145,11 @@
 }
 
 /// 停止
-// - (void)stop{
-// //    [self destroyMTKView];
-//     [self pause];
-//     self.mtkView.hidden = YES;
-// }
+- (void)stop{
+//    [self destroyMTKView];
+    [self pause];
+    self.mtkView.hidden = YES;
+}
 
 // /// 重置
 // - (void)reset{
